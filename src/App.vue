@@ -1,26 +1,52 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <DynamcForm :schema="formSchema" />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script>  
+  import DynamcForm from './components/DynamicForm.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    components: { DynamcForm },
+
+    data(){
+      const formSchema = {
+        fields:[
+          {
+            Label: "Your Name",
+            name: "name",
+            as: "input",
+          },
+          {
+            Label: "Your Email",
+            name: "email",
+            as: "input",
+          },
+          {
+            Label: "Your Birthday",
+            name: "birthday",
+            as: "input",
+          },
+          {
+            Label: "Your gender",
+            name: "gender",
+            as: "input",
+          },
+          {
+            Label: "Your Password",
+            name: "password",
+            as: "input",
+          },
+          {
+            Label: "Your Confirm Password",
+            name: "confirmPassword",
+            as: "input",
+          }
+        ],
+      };
+
+      return{
+        formSchema,
+      };
+    },
+  };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
