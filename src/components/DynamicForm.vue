@@ -1,8 +1,12 @@
 <template>
     <Form>
-        <div v-for="field in schema.fields" :key="field.name">
-            <label :for="field.name">{{ field.Label }}</label>
-            <Field :as="field.as" :id="field.name" :name="field.name"/>
+        <div v-for="{as, name, ...attrs } in schema.fields" :key="name"
+        
+        >
+            <label :for="name">{{ name }}</label>
+            <Field :as="as" :id="name" :name="name" v-bind="attrs"/>
+
+            <ErrorMessage :name="name" />
         </div>
 
         <button>Submit</button>
@@ -10,10 +14,10 @@
 </template>
 
 <script>
-import { Field, Form } from 'vee-validate'
+import { Field, Form, ErrorMessage } from 'vee-validate'
 export default {
     name:'  DynamicForm',
-    components: { Field, Form },
+    components: { Field, Form, ErrorMessage },
     props:{
         schema:{
             type: Object,
